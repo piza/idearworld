@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="GB18030">
+<title>Idear World</title>
+
+<link rel="stylesheet" media="screen" href="styles/index.css"/>
+<script src="scripts/jquery-1.6.4.js"></script>
+<script src="scripts/modernizr-2.0.6.js"></script>
+<script src="scripts/index.js"></script>
+
+</head>
+<body>
+
+<div id="createIdearForm">
+
+<form action="idear/CreateIdearAction.action" method="post">
+			<fieldset>
+			 <legend>Write Idear</legend>
+			<div id="int">
+				<label for="title">Idear <span>Title</span></label> <em>*</em><input type="text"
+					id="title" name="title" class="normal_input_text">
+			</div>
+			<div id="int">
+				<label for="problem">What's the problem</label> <em>*</em><input type="text"
+					id="problem" name="problem" class="normal_input_text">
+			</div>
+				<div id="int">
+				<label for="solution">solution :</label> <br>
+				<textarea id="solution" name="solution" COLS="50" ROWS="5">
+				</textarea>
+				</div>
+				<div id="int">
+				<input id="submitBtn" type="submit" value="Submit">
+				</div>
+			
+			</fieldset>
+			
+		</form>
+
+</div>
+
+</body>
+</html>

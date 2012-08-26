@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd 
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd" 
+           default-autowire="autodetect">
+
+    <context:annotation-config/>
+    <!-- All class in the back-package are auto loaded as a action -->
+    <context:component-scan base-package="com.idearworld.web.actions"/>
+    
+    
+    <!-- All class in the back-package are auto loaded as a service -->
+	<context:component-scan base-package="com.idearworld.service.impl"/>
+	<bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="driverUrl" value="jdbc:mysql://localhost:3306/idearworld?useUnicode=true&amp;characterEncoding=utf-8"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="dabing"></property>
+		<property name="driver" value="com.mysql.jdbc.Driver"></property>
+		<property name="maximumConnectionCount" value="3"></property>
+		<property name="minimumConnectionCount" value="1"></property>
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="dataSource" ref="dataSource" />
+	<!--  <property name="configLocation" value="classpath:mapping-config.xml"/>-->
+	<property name="mapperLocations" value="classpath*:com/idearworld/xml/*.xml" />
+	</bean>
+
+   <!-- manage transaction -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/> 
+    
+    <!-- Mabatis Data Layer -->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"> 
+    <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean> 
+
+    <!-- all class in the back-package are auto loaded as a mapper -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> 
+	 <property name="basePackage" value="com.idearworld.dao" />
+    </bean>
+
+    <!-- Tool class
+   <bean id="jspHelper" class="com.idearworld.web.JspHelper"/> -->
+</beans>
