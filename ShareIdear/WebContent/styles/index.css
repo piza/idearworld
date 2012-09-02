@@ -1,5 +1,5 @@
-
-#createIdearForm{
+@import url("/ShareIdear/styles/base_framework.css");
+#formDiv{
 	width: 600px;
 	height: 300px;
 	align: center;
@@ -13,21 +13,3 @@
 	height: 280px;
 }
 
-#int{
-	padding-left:15px;
-	padding-top:15px;
-}
-
-#int span{
-   padding-left:22px;
-	
-}
-.normal_input_text{
-	width:170px;
-	height:22px;
-}
-
-#int em {
-padding-left: 20px;
-padding-right: 10px;
-}

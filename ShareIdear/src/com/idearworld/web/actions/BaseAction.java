@@ -40,6 +40,15 @@ public abstract class BaseAction extends ActionSupport{
 		 ActionContext.getContext().getValueStack().getContext().put(key, val);
 	}
 	
+	protected Object getFromValueStack(String key){
+		Map<String,Object> map=ActionContext.getContext().getValueStack().getContext();
+		if(map !=null && map.containsKey(key)){
+			return map.get(key);
+		}
+		return null;
+	}
+	
+	
 	protected LoginUserBean getLoginUser(){
 		Object obj=getSession().get("loginUser");
 		if(obj!=null){

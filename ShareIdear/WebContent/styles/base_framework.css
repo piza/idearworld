@@ -1,0 +1,35 @@
+
+#base {
+	display: block;
+	height: 1600px;
+	padding-top:100px;
+	padding-left: 50px;
+	padding-right:50px;
+	background-color: #474447;
+	padding-bottom:80px;
+}
+
+#left {
+	width: 200px;
+	height: 1600px;
+	border-color: #22EB10;
+	background-color: #E3F0CD;
+	float: left;
+}
+
+#center{
+	width: 800px;
+	height: 1600px;
+	background-color: #F7C8F7;
+	padding-left: 15px;
+	float: left;
+	margin-left: 15px;
+}
+
+#right{
+	float: right;
+	background-color: #750707;
+	
+	width: 200px;
+	height: 1600px;
+}

@@ -3,7 +3,7 @@
     <wb-module deploy-name="ShareIdear">
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="ShareIdear"/>
         <property name="java-output-path" value="/ShareIdear/build/classes"/>
+        <property name="context-root" value="ShareIdear"/>
     </wb-module>
 </project-modules>

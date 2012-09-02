@@ -32,6 +32,21 @@
     <result name="error" type="json"><param name="root">jsonMsg</param> </result>
     <result name="success" type="json"><param name="root">jsonMsg</param></result>
    </action>
+   
+   <action name="BrowseIdearAction" class="idearAdminAction" method="browseIdear">
+    <result name="error" type="json"><param name="root">jsonMsg</param> </result>
+    <result name="success" type="json"><param name="root">idearArray</param></result>
+   </action>
+   
+   
+   <action name="OpenIdearAction" class="idearAdminAction" method="openIdear">
+    <result name="success">../idear_details.html</result>
+   </action>
+   
+    <action name="LoadIdearAction" class="idearAdminAction" method="loadIdear">
+    <result name="error" type="json"><param name="root">jsonMsg</param> </result>
+    <result name="success" type="json"><param name="root">idearDetails</param></result>
+   </action>
   <!-- 
   <action name="CreateIdearAction" class="idearAdminAction" method="createIdear">
     <result name="error">/error.jsp </result>

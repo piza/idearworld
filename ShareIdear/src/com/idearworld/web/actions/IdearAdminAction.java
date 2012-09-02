@@ -1,6 +1,10 @@
 package com.idearworld.web.actions;
 
 import java.util.Date;
+import java.util.List;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,18 +19,36 @@ public class IdearAdminAction extends BaseAction{
 
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	private IdearService idearService;
 	
-	
+	private String idearId;
 	private String title;
 	private String problem;
 	private String solution;
 
 	private String jsonMsg;
 	
+	private JSONArray idearArray;
+	
+	private JSONObject idearDetails;
 	@Autowired
 	public void setIdearService(IdearService idearService) {
 		this.idearService = idearService;
+	}
+	
+	public String browseIdear(){
+		
+		List<Idears> list=this.idearService.browseIdear();
+		
+		idearArray=JSONArray.fromObject(list);
+		
+		return SUCCESS;
 	}
 	
 	public String createIdear(){
@@ -38,6 +60,33 @@ public class IdearAdminAction extends BaseAction{
 		int res=this.idearService.createIdear(idear);
 		this.jsonMsg=res+"";
 		return SUCCESS;
+	}
+
+	public String openIdear(){
+		
+		this.putToValueStack("IdearID", this.idearId);
+		return SUCCESS;
+	}
+	
+	public String loadIdear(){
+		
+		String id=(String)this.getFromValueStack("IdearID");
+		if(id==null){
+			return ERROR;
+		}
+		Idears idear=this.idearService.getIdearById(Integer.valueOf(id));
+		System.out.println(idear.getIdearId());
+		this.idearDetails=JSONObject.fromObject(idear);
+		System.out.println("IdearDetails==null   "+idearDetails==null);
+		return SUCCESS;
+	}
+	
+	public JSONArray getIdearArray() {
+		return idearArray;
+	}
+
+	public void setIdearArray(JSONArray idearArray) {
+		this.idearArray = idearArray;
 	}
 
 	public String getTitle() {
@@ -70,6 +119,22 @@ public class IdearAdminAction extends BaseAction{
 
 	public void setJsonMsg(String jsonMsg) {
 		this.jsonMsg = jsonMsg;
+	}
+
+	public JSONObject getIdearDetails() {
+		return idearDetails;
+	}
+
+	public void setIdearDetails(JSONObject idearDetails) {
+		this.idearDetails = idearDetails;
+	}
+
+	public String getIdearId() {
+		return idearId;
+	}
+
+	public void setIdearId(String idearId) {
+		this.idearId = idearId;
 	}
 	
 	
