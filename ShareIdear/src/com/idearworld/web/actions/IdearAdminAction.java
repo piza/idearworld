@@ -63,21 +63,20 @@ public class IdearAdminAction extends BaseAction{
 	}
 
 	public String openIdear(){
-		
-		this.putToValueStack("IdearID", this.idearId);
+		System.out.println("idearId= "+idearId);
+		this.putToSession("IdearID", this.idearId);
 		return SUCCESS;
 	}
 	
 	public String loadIdear(){
 		
-		String id=(String)this.getFromValueStack("IdearID");
+		String id=(String)this.getFromSession("IdearID");
+		System.out.println("id="+id);
 		if(id==null){
 			return ERROR;
 		}
 		Idears idear=this.idearService.getIdearById(Integer.valueOf(id));
-		System.out.println(idear.getIdearId());
 		this.idearDetails=JSONObject.fromObject(idear);
-		System.out.println("IdearDetails==null   "+idearDetails==null);
 		return SUCCESS;
 	}
 	

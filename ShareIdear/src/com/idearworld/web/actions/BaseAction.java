@@ -48,6 +48,17 @@ public abstract class BaseAction extends ActionSupport{
 		return null;
 	}
 	
+	protected void putToSession(String key,Object val){
+		getSession().put(key, val);
+	}
+	
+	protected Object getFromSession(String key){
+		if(getSession().containsKey(key)){
+			return getSession().get(key);
+		}
+		return null;
+	}
+	
 	
 	protected LoginUserBean getLoginUser(){
 		Object obj=getSession().get("loginUser");

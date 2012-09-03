@@ -43,8 +43,7 @@ public class IdearServiceImpl implements IdearService{
 
 	@Override
 	public Idears getIdearById(Integer id) {
-		this.idearsMapper.selectByPrimaryKey(id);
-		return null;
+		return this.idearsMapper.selectByPrimaryKey(id);
 	}
 
 	

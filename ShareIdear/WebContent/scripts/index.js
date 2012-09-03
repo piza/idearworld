@@ -28,17 +28,21 @@ function loadIdears(){
       url:"idear/BrowseIdearAction.action",
       success:function(data){
     	  $.each(data,function(idearIndex,idear){
-    			//alert(idear.idearId);
-    		  $(browser).append("<div class=\"idear_div\" ><a herf=\"/ShareIdear/idear/OpenIdearAction.action?idearId="+idear.idearId+"\">open </a><br>" +
+    		  $(browser).append("<a herf=\"/ShareIdear/idear/OpenIdearAction.action?idearId="+idear.idearId+"\"><div class=\"idear_div\" ><br>" +
     		  		"<b>"+idear.title+"</b> <br>" +
     		  		"<p>"+idear.problem+"</p> <br>" +
     		  		"<p>"+idear.solution+"</p> <br>" +
-    		  		"</div>");
+    		  		"</div></a>");
     		}
     	  );
     	  
-    	  $(".idear_div a").live("click",function(event){
-    		  alert(event.type);
+    	  
+    	  $(".idear_div").live("click",function(event){
+
+    		var url_a=$(this.parentElement).attr("herf")+"&"+$.now();
+    		//alert(url_a);
+    		  window.location.href=url_a;
+    		  
     		  
     	  });
       }

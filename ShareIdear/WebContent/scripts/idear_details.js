@@ -3,9 +3,11 @@ $(function(){
 });
 
 function init(){
+	
 	$.ajax({
 		type:"post",
 		dataType:"json",
+		cache:false,
 		url:"/ShareIdear/idear/LoadIdearAction.action",
 	      success:function(data){
 	    	  $('#showIdear').append(
